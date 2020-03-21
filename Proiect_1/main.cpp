@@ -102,7 +102,7 @@ void radix_sort16(vector<int> &v, int n)
 {
     queue<int> q[16];
     int k;
-    for(int i = 0; i <= 28; i += 4)
+    for(int i = 0; i <= 24; i += 4)
     {
         for(int j = 0; j < n; ++j)
             q[(v[j]>>i)&15].push(v[j]);
