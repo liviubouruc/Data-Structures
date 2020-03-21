@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1584779554 source:c:\users\bouru\documents\probleme algo\proiect1 sd\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+	<random>
+	<chrono>
+	<algorithm>
+
