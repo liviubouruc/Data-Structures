@@ -1,1 +1,3 @@
-# Data-Structures
+# Structuri de date
+
+* Proiect 1
