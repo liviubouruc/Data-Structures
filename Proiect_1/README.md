@@ -5,4 +5,4 @@ Am implementat urmatorii algoritmi:
 * Merge Sort
 * Quick Sort
 * Radix Sort in baza 256 si in baza 16
-* + STL Sort
++ STL Sort
