@@ -1,13 +1,26 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 
 using namespace std;
+
+ifstream fin ("date.in");
 
 class MinMaxHeap
 {
     int dim;
     vector <int> heap;
 
-    int level(int i);
+    int level(int i)
+    {
+        int lvl = 0, pow = 1;
+        while(pow <= i)
+        {
+            pow <<= 1;
+            lvl++;
+        }
+        return lvl;
+    }
     void pushDown(int i)
     {
         if(level(i) % 2 == 0) pushDownMin(i);
@@ -137,8 +150,29 @@ public:
         heap.push_back(x);
         pushUp(dim);
     }
-    void deleteMin();
-    void deleteMax();
+    void deleteMin()
+    {
+        if(dim == 1) dim = 0;
+        else
+        {
+            heap[0] = heap[dim-1];
+            dim--;
+            pushDown(1);
+        }
+    }
+    void deleteMax()
+    {
+        if(dim < 3) dim--;
+        else
+        {
+            int Max;
+            if(heap[2] > heap[3]) Max = 3;
+            else Max = 4;
+            heap[Max-1] = heap[dim-1];
+            dim--;
+            pushDown(Max);
+        }
+    }
     int getMin() const { return heap[0]; }
     int getMax() const
     {
@@ -178,13 +212,21 @@ int main()
         }
         else if(var == 2)
         {
-            if(!myHeap.size()) cout << "Heap-ul este gol!\n"
-            else myHeap.deleteMin();
+            if(!myHeap.size()) cout << "Heap-ul este gol!\n";
+            else
+            {
+                myHeap.deleteMin();
+                cout << "Am sters minimul!\n";
+            }
         }
         else if(var == 3)
         {
             if(!myHeap.size()) cout << "Heap-ul este gol!\n";
-            else myHeap.deleteMax();
+            else
+            {
+                myHeap.deleteMax();
+                cout << "Am sters maximul!\n";
+            }
         }
         else if(var == 4)
         {
