@@ -13,13 +13,13 @@ class MinMaxHeap
 
     int level(int i)
     {
-        int lvl = 0, pow = 1;
-        while(pow <= i)
+        int pow = 1, ct = 2;
+        while(ct <= i)
         {
-            pow <<= 1;
-            lvl++;
+            ct *= 2;
+            pow++;
         }
-        return lvl;
+        return pow-1;
     }
     void pushDown(int i)
     {
@@ -142,12 +142,13 @@ public:
     {
         dim = n;
         heap = arr;
-        for(int i = n/2; i >= 1; --i) pushDown(i);
+        for(int i = n/2+1; i >= 1; --i) pushDown(i);
     }
     void insert(int x)
     {
+        if(heap.size() > dim) heap[dim] = x;
+        else heap.push_back(x);
         dim++;
-        heap.push_back(x);
         pushUp(dim);
     }
     void deleteMin()
@@ -166,8 +167,8 @@ public:
         else
         {
             int Max;
-            if(heap[2] > heap[3]) Max = 3;
-            else Max = 4;
+            if(heap[1] > heap[2]) Max = 2;
+            else Max = 3;
             heap[Max-1] = heap[dim-1];
             dim--;
             pushDown(Max);
